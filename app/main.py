@@ -1,11 +1,27 @@
 import turtle
 from math import pi
 
+class Flock:
+    def __init__(self):
+        self.screen = turtle.getscreen()
+        self.flock = []
+        
+        self.screen.setworldcoordinates(-100, 0, 100, 200)
+        my_turtle = PlantTurtle(0,0)
+        my_turtle.rotate_abs(90)
+        self.flock.append(my_turtle)
+        
+    def step(self):
+        for t in self.flock:
+            t.step()
+        #TODO
+
 class PlantTurtle:
     def __init__(self, x, y):
         self.health = 1
         self.decay = 0.5
         self.turtle = turtle.Turtle()
+        
         self.turtle.penup()
         self.turtle.goto(x, y)
         self.turtle.pendown()
@@ -35,13 +51,10 @@ class PlantTurtle:
         #TODO
         
 def main():
-    s = turtle.getscreen()
-    s.setworldcoordinates(-100, 0, 100, 200)
-    my_turtle = PlantTurtle(0,0)
-    my_turtle.rotate_abs(90)
+    my_flock = Flock()
     for i in range(5):
-        my_turtle.step()
-        input()
-    
+        my_flock.step()
+
+
 if __name__ == "__main__":
     main()
